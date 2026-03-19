@@ -1,0 +1,15 @@
+{
+  "name": "create-gamvio-game",
+  "version": "0.1.0",
+  "description": "Create a new game for the Gamvio platform",
+  "license": "MIT",
+  "bin": {
+    "create-gamvio-game": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gamv-io/create-gamvio-game"
+  },
+  "homepage": "https://gamv.io/developers",
+  "keywords": ["gamvio", "game", "web3", "create", "scaffold", "starter"]
+}
