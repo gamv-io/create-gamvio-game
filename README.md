@@ -241,7 +241,7 @@ Use a reverse proxy (Nginx, Caddy) to terminate SSL and forward to port 3100.
 - [SDK Documentation](https://gamv.io/developers/docs) — Full API reference and guides
 - [Developer Portal](https://dev.gamv.io) — Register, create games, manage keys
 - [API Reference](https://gamv.io/developers/api) — REST API endpoints
-- [Example Games](https://github.com/gamv-io/games) — Open-source sample projects
+- [Example Games](https://github.com/gamv-io/sample-arcade) — Arcade game samples
 - [Gamvio Platform](https://gamv.io) — The game store
 
 ## License
