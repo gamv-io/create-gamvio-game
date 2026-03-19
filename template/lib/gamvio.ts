@@ -13,6 +13,7 @@
 import { createGameServer } from '@gamvio/game-sdk/server';
 
 const API_URL = process.env.GAMVIO_API_URL || 'https://gamv.io';
+const API_KEY = process.env.GAMVIO_API_KEY || '';
 const API_SECRET = process.env.GAMVIO_API_SECRET || '';
 const DEFAULT_GAME_ID = process.env.GAMVIO_GAME_ID || '';
 
@@ -54,4 +55,36 @@ export async function getLeaderboard(limit?: number, gameId?: string) {
 /** Get the current player's rank. */
 export async function getMyRank(accessToken: string, gameId?: string) {
   return server(gameId).getPlayerRank(accessToken);
+}
+
+/** Fetch a test token from the SDK test-token endpoint using the API key. */
+export async function getTestToken(): Promise<{
+  player_id: string;
+  token: string;
+  display_name: string;
+  expires_at: number;
+} | null> {
+  if (!API_KEY) {
+    console.error('GAMVIO_API_KEY is not set — cannot fetch test token');
+    return null;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/api/v1/sdk/auth/test-token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY,
+      },
+    });
+    const body = await res.json();
+    if (!body.success) {
+      console.error('Test token fetch failed:', body.error?.message);
+      return null;
+    }
+    return body.data;
+  } catch (err) {
+    console.error('Test token fetch error:', err);
+    return null;
+  }
 }
